@@ -19,3 +19,10 @@ def mnist_train_kaggle(path, val_split=0.9):
     val_lab = one_hot(data[train_n:,0])
     return train_img, train_lab, (val_img, val_lab)
 
+def mnist_test_kaggle(path):
+    return pd.read_csv(path, delimiter=',').values / 255
+
+def mnist_submission_kaggle(path, labs):
+    values = np.concatenate((np.arange(1,len(labs)+1)[...,None], labs[...,None]), axis=1)
+    data_frame = pd.DataFrame(data=values, dtype=np.int32, columns=['ImageId','Label'])
+    data_frame.to_csv(path_or_buf=path, index=False)

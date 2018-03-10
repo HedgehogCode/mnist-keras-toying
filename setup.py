@@ -11,6 +11,7 @@ setup(name='mnist_model',
         packages=['mnist_model'],
         install_requires=[
             'keras',
+            'tensorflow-gpu',
             'numpy',
             'pandas',
             'matplotlib',
